@@ -90,7 +90,9 @@ FROM
 WHERE 
     EXTRACT(YEAR FROM regist_datetime) = '2010'
 AND 
+    -- chú ý kiểu dữ liệu khi so sánh. 
     LENGTH(password) < 6
+    
 ;
 
 /**/
