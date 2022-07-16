@@ -242,12 +242,46 @@ SELECT
 FROM
     book
 WHERE
-    price <= 3000
+    price BETWEEN 3000 and 3999;
 ;
 -------------
 /*
 9.4.3 所在地が東京都または大阪府の出版社の一覧を表示しなさい。
 */
+SELECT 
+    publisher_name,
+    prefecture
+FROM
+    publisher
+WHERE 
+    prefecture IN ('東京都', '大阪府')
+;
 -------------
-/**/
+/*
+9.4.4 
+1 月、5 月、7 月のいずれかの月に会員登録した会員の会員 ID、
+氏名を結果表の見出しが「会員 ID」、「氏名」となるように表示しなさい。
+*/
+SELECT
+    member_id AS "会員 ID",
+    first_name || last_name AS "氏名"
+FROM
+    member
+WHERE
+    (
+        EXTRACT(MONTH FROM regist_datetime) = 1
+        OR
+        EXTRACT(MONTH FROM regist_datetime) = 5
+        OR
+        EXTRACT(MONTH FROM regist_datetime) = 7
+    )
+    /*
+        TO_CHAR(regist_datetime, 'MM') IN ('01','05','07')
+    */
+;
 -------------
+
+-- CHAPTER 10
+/*
+10.4.1 会員の人数の一覧を、結果表の見出しが「会員人数」となるように表示しなさい。
+*/
