@@ -1,3 +1,4 @@
+-- CHAPTER 7
 /*
 7.1
 */
@@ -46,7 +47,7 @@ LIKE
 -------------
 
 -------------
-
+-- CHAPTER 8
 /*
 8.4.1 価格が 2000 円以上でページ数が 320 未満の書籍 ID、書籍名、ISBN の一覧を、
 結果表の見出しが「書籍 ID」、「書籍名」、「ISBN」となるように表示しなさい。
@@ -148,15 +149,102 @@ AND
 結果表は「会員 ID」、「カード番号」を見出しとして表示しなさい。
 ただし、有効期限が 2012 年以前のものは除外して表示しなさい。
 */
+SELECT
+    member_id AS "会員 ID",
+    card_number AS "カード番号"
+FROM
+    member_card
+WHERE 
+    (card_number LIKE '%1111%' OR card_number LIKE '%2222%')
+AND
+    CAST(expire_year AS INTEGER) > 2012
+;
+-------------
+/*
+8.4.7 血液型が A 型または AB 型の会員の会員 ID、血液型、登録日時の一覧を、
+結果表の見出しが「会員 ID」、「血液型」、「登録日時」となるように表示しなさい。
+ただし、2011 年または 2012 年に登録された会員のみを表示することとする。
+*/
+SELECT
+    member_id AS "会員 ID",
+    blood_type AS "血液型",
+    regist_datetime AS "登録日時"
+FROM
+    member
+WHERE
+    (
+        blood_type = 'A'
+        OR
+        blood_type = 'AB'
+    )
+AND 
+    (
+        EXTRACT(YEAR FROM regist_datetime) = 2011
+        OR
+        EXTRACT(YEAR FROM regist_datetime) = 2012
+    )
+;
 
 -------------
-/**/
+/*
+8.4.8 値引き金額が 100 円以下でページ数が 300 以上の書籍と、出版社 ID が 
+P0002 で価格が 800 円以上の書籍の一覧を、結果表の見出しが
+「書籍 ID」、「書籍名」、「価格」となるように表示しなさい。ただし、カテゴリ ID が
+NULL のレコードは表示しないものとする。    
+*/
+SELECT
+    book_id AS "書籍 ID",   
+    book_name AS "書籍名",
+    price AS "価格"
+FROM
+    book
+WHERE
+    category_id IS NOT NULL
+AND
+    (
+        discount <= 100
+        AND 
+        page_count >= 300
+    )
+AND
+    (
+        publishser_id LIKE 'P0002'
+        AND
+        price >= 800 
+    )
+;
+
 -------------
-/**/
+
+-- CHAPTER 9
+/*
+9.4.1 血液型が A 型もしくは AB 型の正会員の一覧を表示しなさい。結果表は「生年月日」
+を見出しとして表示しなさい。※IN を利用して記述すること。
+*/
+SELECT
+    birthday AS "生年月日"
+FROM
+    member
+WHERE
+    blood_type IN ('A' ,'AB') 
+AND 
+    member_type = '1'
+;
 -------------
-/**/
--------------
-/**/
+/*
+9.4.2 価格が 3000 円台の書籍の一覧を表示しなさい。結果表は「書籍 ID」、「書籍名」、
+「価格」を見出しとして表示しなさい。
+*/
+SELECT
+    book_id AS "書籍 ID",   
+    book_name AS "書籍名",
+    price AS "価格"
+FROM
+    book
+WHERE
+    price <= 3000
+
+;
 -------------
 /**/
 -------------
