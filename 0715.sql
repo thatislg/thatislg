@@ -320,3 +320,79 @@ FROM
 WHERE
     card_number LIKE '%7777%'
 ;
+
+-----------
+-- CHAPTER 11
+
+-- CHAPTER 12
+-- 12.4.1 
+/*
+正会員が複数いる血液型を人数も含めて表示しなさい。
+また、列の見出しはそれぞれ「血液型」、「人数」としなさい。
+*/
+SELECT
+    blood_type AS "血液型",
+    COUNT(*) AS "人数"  
+FROM
+    member
+WHERE 
+    member_type = '1'
+GROUP BY 
+    blood_type
+HAVING 
+    COUNT(*) > 1
+;
+
+-- 12.4.2 
+/*
+カテゴリ ID、出版社 ID 毎に平均値引き額が 200 円より高いものの一覧を表示しなさい。
+結果表は「カテゴリ ID」、「出版社 ID」、「平均値引き額」を見出しとして表示しなさい。
+*/
+SELECT
+    category_id AS "カテゴリ ID",
+    publisher_id AS "出版社 ID",
+    AVG(discount) AS "平均値引き額"
+FROM
+    book
+GROUP BY 
+    category_id, publisher_id
+HAVING  
+    AVG(discount) > 200
+; 
+
+-- 12.4.3
+/*
+誕生月ごとの会員の人数の一覧を、結果表の見出しが「誕生月」、「人数」
+となるように表示しなさい。ただし、人数が 2 人以上の月のみを表示すること。
+なお、1 桁の月は 0 を付けずに 1 桁のままで表示する。
+*/
+SELECT
+    EXTRACT(MONTH FROM birthday) AS "誕生月",
+    COUNT(
+        EXTRACT(MONTH FROM birthday)
+    ) AS "人数"
+FROM
+    member
+GROUP BY 
+    EXTRACT(MONTH FROM birthday)
+HAVING 
+     COUNT(
+        EXTRACT(MONTH FROM birthday)
+    ) >= 2
+;
+
+--12.4.4
+/*
+同一有効期限年のクレジットカードを複数持っている会員の会員 ID と有効期限年の一覧を、結果表の見出しが
+「会員 ID」、「有効期限年」となるように表示しなさい。
+*/
+SELECT
+    member_id AS "会員 ID",
+    expire_year AS "有効期限年"
+FROM
+    member_card
+GROUP BY
+    member_id, expire_year 
+HAVING
+    COUNT(member_card_id) >= 2
+;
