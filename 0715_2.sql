@@ -13,6 +13,7 @@ ORDER BY
 ASC 
 ;
 -------
+
 /*
 2 2011 年の注文を会員 ID の昇順、会員 ID が同一の注文に対しては注文日時の降順で全ての項目を表示しなさ
 い。
@@ -28,6 +29,7 @@ ORDER BY
     ,order_datetime DESC
 ;
 -------
+
 /*
 3 会員情報を非会員、正会員の順に表示しなさい。
 また、非会員、正会員毎に血液型の降順で、
@@ -46,6 +48,7 @@ ORDER BY
     blood_type DESC
 ;
 ---------------
+
 /*
 4 カテゴリ毎の書籍の平均価格が高い順に書籍情報を表示しなさい。結果表は「カテゴリ ID」、「平均価格」を見出し
 として表示しなさい。
@@ -61,6 +64,8 @@ ORDER BY
     AVG(price) ASC
 ;
 ---------------------
+
+
 /*
 5 クレジットカードを複数所持する会員の会員 ID と所持枚数の一覧を、
 結果表の見出しが「会員 ID」、「所持枚数」となるように所持枚数が多い順に表示しなさい。
@@ -73,10 +78,14 @@ FROM
     member_card
 GROUP BY 
     member_id
+HAVING 
+    COUNT(member_card_id) > 1
 ORDER BY
-    COUNT(member_card_id)DESC
+    所持枚数 DESC
     ,member_id ASC
 ;
+
+
 /*
 6 血液型毎の会員の人数の一覧を、結果表の見出しが「血液型」、「人数」となるように人数の多い順で表示しなさい。
 ただし、血液型が不明の会員については集計しない。また、人数が 2 以下の血液型は表示しない。
@@ -91,10 +100,12 @@ WHERE
 GROUP BY 
     blood_type
 HAVING 
-    COUNT(member_id) >= 2
+    COUNT(member_id) > 2
 ORDER BY
     COUNT(member_id) DESC
 ;
+
+
 -------------------------------------
 --- CHAPTER 14
 /*
@@ -134,6 +145,7 @@ ORDER BY
     m.member_id
     ,oh.order_no
 ;
+
 /*
 3 クレジットカード情報付きの会員一覧を表示しなさい。ただし、表示対象の会員は血液型が A 型と B 型とする。結
 果表は「会員 ID」、「氏名」、「カード番号」、「有効期限年」、「有効期限月」を見出しとして表示しなさい。また、表示
@@ -161,6 +173,7 @@ ORDER BY
     ,mc.card_number ASC
 ;
 -----------------
+
 /*
 4 東京都が所在地の出版社が出版する、書籍の一覧情報を表示しなさい。なお、出版社が特定できる書籍のみを
 表示する。結果表は「書籍 ID」、「書籍名」を見出しとして表示しなさい。表示順は書籍 ID の昇順で表示しなさい。
@@ -169,25 +182,32 @@ SELECT
     book_id AS "書籍 ID"
     ,book_name AS "書籍名"
 FROM
-    book
+    book AS b
+    INNER JOIN publisher AS p
+        ON b.publisher_id = p.publisher_id
 WHERE 
-    publisher_id IS NOT NULL
+    prefecture = '東京都'
 ORDER BY
     book_id ASC
 ;
+
+
 ---------------
 /*
 5 有効期限が 2012 年のクレジットカードで決済された注文の一覧を表示しなさい。結果表は「注文番号」、「会員
 ID」、「カード番号」を見出しとして表示しなさい。
 */
 SELECT
-    order_no AS "注文番号"
-    ,member_id AS "会員ID"
-    ,member_card_id AS "カード番号"
+    oh.order_no AS "注文番号"
+    ,oh.member_id AS "会員ID"
+    ,oh.member_card_id AS "カード番号"
 FROM
-    order_header
+    order_header AS oh
+    INNER JOIN member_card AS mc 
+        ON oh.member_card_id  = mc.member_card_id
+        AND oh.member_id = mc.member_id
 WHERE   
-    EXTRACT(YEAR FROM order_datetime) = '2012'
+    mc.expire_year = '12'
 ;
 --------------
 /*
