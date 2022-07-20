@@ -200,7 +200,7 @@ ID」、「カード番号」を見出しとして表示しなさい。
 SELECT
     oh.order_no AS "注文番号"
     ,oh.member_id AS "会員ID"
-    ,oh.member_card_id AS "カード番号"
+    ,mc.member_card_id AS "カード番号"
 FROM
     order_header AS oh
     INNER JOIN member_card AS mc 
@@ -209,20 +209,23 @@ FROM
 WHERE   
     mc.expire_year = '12'
 ;
+
+
 --------------
 /*
 6 出版社の所在地毎に書籍の出版数(書籍の数)の一覧を、結果表の見出しが「所在地」、「出版数」となるように表
 示しなさい。なお、出版数が 1 以上の所在地のみを表示すればよい。列の見出しはそれぞれ「所在地」、「出版数」
 としなさい。
 */
-
 SELECT
     prefecture AS "所在地"
-    ,COUNT(publisher_id) AS "出版数"
+    ,COUNT(*) AS "出版数"
 FROM
-    publisher
+    publisher as p
+    INNER JOIN book AS b
+        ON p.publisher_id = b.publisher_id
 GROUP BY 
-    prefecture
+    p.prefecture
 HAVING
-    COUNT(publisher_id) >= 1
+    COUNT(*) >= 1
 ;
