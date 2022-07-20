@@ -43,9 +43,7 @@ SELECT
 FROM
     member
 ORDER BY 
-    member_type ASC
-    ,blood_type DESC
-    ,member_id ASC
+    blood_type DESC
 ;
 ---------------
 /*
