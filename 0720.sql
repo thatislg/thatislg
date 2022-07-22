@@ -33,3 +33,59 @@ FROM
     RIGHT OUTER JOIN category AS c
         ON b.category_id = c.category_id 
 ; 
+
+--INNER JOIN
+SELECT
+   *
+FROM
+    -- book 1st 
+    book AS b
+    INNER JOIN category AS c
+        ON b.category_id = c.category_id 
+LIMIT 10
+; 
+
+--INNER JOIN
+SELECT
+    *
+FROM
+    -- book 1st 
+    category AS c
+    INNER JOIN book AS b
+        ON b.category_id = c.category_id 
+LIMIT 10
+; 
+
+--INNER JOIN
+SELECT
+    COUNT(book_id)
+    ,COUNT(book_name)
+    ,COUNT(price)
+    ,COUNT(discount)
+    ,COUNT(publisher_id)
+FROM
+    -- book 1st 
+    book AS b
+    INNER JOIN category AS c
+        ON b.category_id = c.category_id 
+LIMIT 10
+; 
+
+--INNER JOIN
+SELECT
+    COUNT(b.*)
+FROM
+    -- book 1st 
+    book AS b
+    INNER JOIN category AS c
+        ON b.category_id = c.category_id 
+; 
+
+SELECT
+    COUNT(c.*)
+FROM
+    -- book 1st 
+    category AS c
+    INNER JOIN book AS b
+        ON b.category_id = c.category_id 
+; 
