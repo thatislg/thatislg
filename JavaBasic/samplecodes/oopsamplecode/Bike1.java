@@ -3,6 +3,9 @@
 // if you do not create constructor when created class.
 // it will be created automatically with null as default
 class Bike1(){
+	/**
+	 * 
+	 */
 	Bike1(){
 		System.out.println("BBBB");
 	}
