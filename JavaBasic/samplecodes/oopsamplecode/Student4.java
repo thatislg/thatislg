@@ -20,6 +20,5 @@ public class Student4{
 		
 		s1.display();
 		s2.display();
-		System.out.println((7 - 7 % 3) / 3);
 	}	
 }
