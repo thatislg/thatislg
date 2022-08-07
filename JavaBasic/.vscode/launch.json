@@ -6,6 +6,27 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch Chapter06Exercise",
+            "request": "launch",
+            "mainClass": "samplecodes.chap075.Chapter06Exercise",
+            "projectName": "JavaBasic_22e963e0"
+        },
+        {
+            "type": "java",
+            "name": "Launch WrapperTest",
+            "request": "launch",
+            "mainClass": "WrapperTest",
+            "projectName": "JavaBasic_22e963e0"
+        },
+        {
+            "type": "java",
+            "name": "Launch StringMethodTest",
+            "request": "launch",
+            "mainClass": "StringMethodTest",
+            "projectName": "JavaBasic_22e963e0"
+        },
+        {
+            "type": "java",
             "name": "Launch Current File",
             "request": "launch",
             "mainClass": "${file}"
