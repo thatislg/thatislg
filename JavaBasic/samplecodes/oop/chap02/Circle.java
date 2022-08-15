@@ -7,7 +7,7 @@ public class Circle {
     private BigDecimal circle_R, circle_Area, circle_Perimeter ;
 
     // Set pi = 3.14
-    private final BigDecimal pi = new BigDecimal("3.14");
+    private final BigDecimal pi = new BigDecimal(Math.PI);
     
     public BigDecimal getCircle_R() {
         return circle_R;
