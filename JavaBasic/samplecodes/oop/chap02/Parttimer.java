@@ -8,20 +8,7 @@ public class Parttimer {
     private BigDecimal kinmuJikan;
     private BigDecimal kyuJyouGaku;
     
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-
-        Parttimer pt = new Parttimer();
-        System.out.println("時給を入力してください。");
-        pt.setJikyu(sc.nextBigDecimal());
-
-        System.out.println("時給を入力してください。");
-        pt.setKinmuJikan(sc.nextBigDecimal()));
-
-        pt.setKyuJyouGaku(kyuJyouGaku);
-        
-
-    }
+   
 
     /**
      * @return BigDecimal return the jikyu
@@ -61,7 +48,7 @@ public class Parttimer {
     /**
      * @param kyuJyouGaku the kyuJyouGaku to set
      */
-    public void setKyuJyouGaku(BigDecimal kyuJyouGaku) {
+    public void setKyuJyouGaku() {
         this.kyuJyouGaku = this.jikyu.multiply(this.kinmuJikan);
     }
 
