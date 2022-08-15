@@ -2,8 +2,10 @@
 public class Student4{
 	int id;
 	String name;
+
 	private String first_name, last_name;
 	private int salary;
+
 	
 	Student4(int id, String name){
 		// when agruments name as the same as properties nam
@@ -11,6 +13,7 @@ public class Student4{
 		this.id = id;
 		this.name = name;
 	}
+
 	
 	void set_Salary(int main_Salary, int bonus){
 		this.salary = main_Salary + bonus;
@@ -46,5 +49,6 @@ public class Student4{
 		
 		s1.display();
 		
+
 	}	
 }
