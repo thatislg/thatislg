@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch Chapter07Exercise",
+            "request": "launch",
+            "mainClass": "samplecodes.chap08.Chapter07Exercise",
+            "projectName": "JavaBasic_22e963e0"
+        },
+        {
+            "type": "java",
             "name": "Launch Chapter06Exercise",
             "request": "launch",
             "mainClass": "samplecodes.chap075.Chapter06Exercise",
