@@ -25,7 +25,7 @@ public class TestBigDecimal {
         System.out.println(j.setScale(3, RoundingMode.DOWN));
         System.out.println(j.setScale(2, RoundingMode.FLOOR));
         System.out.println(j.setScale(2, RoundingMode.HALF_UP));
-        System.out.println(j.setScale(2, RoundingMode.DOWN));
+        System.out.println(i.multiply(j).setScale(4, RoundingMode.CEILING));
 
     }
 }
