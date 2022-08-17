@@ -1,4 +1,4 @@
-package samplecodes.oop.chap03;
+package chap03;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
