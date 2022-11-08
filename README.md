@@ -14,7 +14,7 @@ ___
 - ## SKILL 
 
 - **Languages:** Java, Python, C and body language.
-- **Backend:** SrpingBoot, Django
+- **Backend:** SpringBoot, Django
 - **Web dev:** HTML, CSS, JS
 - **Frontend:** Bootstrap
 - **SQL:** Postgresql
