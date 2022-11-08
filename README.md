@@ -18,6 +18,9 @@ ___
 - **Web dev:** HTML, CSS, JS
 - **Frontend:** Bootstrap
 - **SQL:** Postgresql
+- **CAD:** Autocad
+- **Adobe:** Photoshop/IIlustrator
+- **Manager:** Clickup/Backlog
 ___
 
 <!---
