@@ -4,7 +4,7 @@ ___
 - ## 👋 Hi, I’m @thatislg1720
 
 
-- 👀 I’m an Civil Engineering and a Bridge System Engineering. 
+- 👀 I’m a Civil Engineering and a Bridge System Engineering. 
 - 🌱 I can speak Vietnamese, English, Japanese, a little bit of Chinese and Russian 
 
 - I am living in Japan. 
